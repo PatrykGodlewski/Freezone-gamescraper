@@ -1,3 +1,4 @@
+import { ImagesTypes } from '@/types/Games.type';
 import { db } from '@utils/database';
 import { logger } from '@utils/logger';
 import { OfferGame, getGames } from 'epic-free-games';
@@ -43,6 +44,11 @@ export default class EpicGamesController {
       release_date: z.date().nullable(),
     });
 
+    const images = JSON.stringify({
+      horizontal: game.keyImages.filter(img => img.type === 'OfferImageWide')[0].url,
+      vertical: game.keyImages.filter(img => img.type === 'OfferImageTall')[0].url,
+    } satisfies ImagesTypes);
+
     const gameData = {
       app_id: game.id,
       game_type: game.offerType,
@@ -50,7 +56,7 @@ export default class EpicGamesController {
       game_name: game.title,
       description: game.description,
       is_free: game.price.totalPrice.discountPrice === 0,
-      images: JSON.stringify(game.keyImages),
+      images,
       url_slug: game?.offerMappings[0]?.pageSlug ?? game?.catalogNs?.mappings[0]?.pageSlug,
       release_date: null,
     };

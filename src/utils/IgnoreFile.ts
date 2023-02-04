@@ -9,7 +9,7 @@ type DataType = DataObjectType | DataObjectType[];
 
 export default class IgnoreFile {
   private ignoreData: Array<DataObjectType> = [];
-  private tempDir = './temp/steamGamesCache.json';
+  private tempDir = '/temp/steamGamesCache.json';
 
   constructor(data?: DataType, tempDir?: string) {
     try {

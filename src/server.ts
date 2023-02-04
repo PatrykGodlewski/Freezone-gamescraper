@@ -1,7 +1,8 @@
 import App from '@/app';
-import SteamGameController from '@/controllers/SteamGamesController';
 import validateEnv from '@utils/validateEnv';
-import EpicGamesController from './controllers/EpicGamesController';
+
+import EpicGamesController from '@/controllers/EpicGamesController';
+import SteamGameController from '@/controllers/SteamGamesController';
 
 validateEnv();
 
